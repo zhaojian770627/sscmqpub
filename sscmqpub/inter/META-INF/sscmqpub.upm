@@ -9,6 +9,10 @@
 			<interface>nc.itf.inter.IInterTransationQuery</interface>
 			<implementation>nc.impl.inter.InterTransationQueryImpl</implementation>
 		</component>
+		<component priority="0" singleton="true" remote="true" tx="CMT" supportAlias="true">
+			<interface>nc.itf.inter.IInterTaskManager</interface>
+			<implementation>nc.impl.inter.InterTaskManagerImpl</implementation>
+		</component>
 	</public>
 	<private>
 	</private>
