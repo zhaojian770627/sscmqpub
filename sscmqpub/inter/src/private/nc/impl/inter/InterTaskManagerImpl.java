@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import ssc.util.mq.MQLockedExeption;
-
 import nc.bs.dao.BaseDAO;
 import nc.bs.dao.DAOException;
 import nc.bs.uap.lock.PKLock;
@@ -166,5 +164,11 @@ public class InterTaskManagerImpl implements IInterTaskManager {
 		params.addParam(IInterTaskManager.TASK_READY);
 		params.addParam(taskid);
 		new BaseDAO().executeUpdate(upSql,params);
+	}
+
+	@Override
+	public void delSucessedTask() throws DAOException {
+		String delSql="delete from mq_intertaskvo where taskstatus='SUCCESS'";
+		new BaseDAO().executeUpdate(delSql);
 	}
 }

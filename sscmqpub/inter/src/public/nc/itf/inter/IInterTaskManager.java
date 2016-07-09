@@ -97,4 +97,9 @@ public interface IInterTaskManager {
 	 * @throws DAOException
 	 */
 	void updateTaskToReady(String taskid) throws DAOException;
+	
+	/*
+	 * 清除处理成功的任务
+	 */
+	void delSucessedTask() throws DAOException;
 }
