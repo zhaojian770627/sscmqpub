@@ -17,9 +17,6 @@ import nc.vo.sscmq.InterTaskVO;
 
 public class InterTaskManagerImpl implements IInterTaskManager {
 
-	//
-	
-	
 	@Override
 	public void addSynTask(InterTaskVO taskVO) throws DAOException {
 		new BaseDAO().insertVOWithPK(taskVO);
@@ -170,5 +167,13 @@ public class InterTaskManagerImpl implements IInterTaskManager {
 	public void delSucessedTask() throws DAOException {
 		String delSql="delete from mq_intertaskvo where taskstatus='SUCCESS'";
 		new BaseDAO().executeUpdate(delSql);
+	}
+
+	@Override
+	public void delInterTaskByID(String taskid) throws DAOException {
+		String delSql="delete from mq_intertaskvo where taskid=?";
+		SQLParameter params = new SQLParameter();
+		params.addParam(taskid);
+		new BaseDAO().executeUpdate(delSql,params);
 	}
 }

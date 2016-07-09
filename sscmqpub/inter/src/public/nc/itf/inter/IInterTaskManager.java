@@ -102,4 +102,12 @@ public interface IInterTaskManager {
 	 * 清除处理成功的任务
 	 */
 	void delSucessedTask() throws DAOException;
+
+	/**
+	 * 删除任务
+	 * 
+	 * @param taskid
+	 * @throws DAOException 
+	 */
+	void delInterTaskByID(String taskid) throws DAOException;
 }
