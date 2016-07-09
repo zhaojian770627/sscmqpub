@@ -66,7 +66,7 @@ public class InterTaskManagerImpl implements IInterTaskManager {
 
 			index++;
 		}
-		String condition = " taskid in (" + ids + "')";
+		String condition = " taskid in (" + ids + ")";
 		String upSql="update mq_intertaskvo set taskstatus='"+IInterTaskManager.TASK_PROCESS+"' where "+ condition;
 		dao.executeUpdate(upSql);
 		return aryTaskVOS;
@@ -85,7 +85,7 @@ public class InterTaskManagerImpl implements IInterTaskManager {
 		params.addParam(IInterTaskManager.TASK_FAILED);
 		params.addParam(message);
 		params.addParam(task.getPrimaryKey());
-		dao.executeUpdate(upSql);
+		dao.executeUpdate(upSql,params);
 		
 		// 如果可以回滚，由源任务生成一条回滚任务
 		if("Y".equals(task.getAllowundo()))
@@ -110,6 +110,6 @@ public class InterTaskManagerImpl implements IInterTaskManager {
 		SQLParameter params = new SQLParameter();
 		params.addParam(IInterTaskManager.TASK_SUCCESS);
 		params.addParam(primaryKey);
-		new BaseDAO().executeUpdate(upSql);
+		new BaseDAO().executeUpdate(upSql,params);
 	}
 }
